@@ -7,9 +7,22 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
+    /**
+     * @Route("/")
+     */
+    public function indexAction()
     {
-        return $this->render('AcmeBasicCmsBundle:Default:index.html.twig', array('name' => $name));
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $site = $dm->find('Acme\BasicCmsBundle\Document\Site', '/cms');
+        $homepage = $site->getHomepage();
+
+        if (!$homepage) {
+            throw $this->createNotFoundException('No homepage configured');
+        }
+
+        return $this->forward('AcmeBasicCmsBundle:Default:page', array(
+            'contentDocument' => $homepage
+        ));
     }
 
     /**
