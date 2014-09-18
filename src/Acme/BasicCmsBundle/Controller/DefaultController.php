@@ -25,4 +25,14 @@ class DefaultController extends Controller
             'posts' => $posts,
         );
     }
+
+    /**
+     * @Template()
+     */
+    public function postAction($contentDocument){
+        return array(
+            'post'  => $contentDocument,
+
+        );
+    }
 }
