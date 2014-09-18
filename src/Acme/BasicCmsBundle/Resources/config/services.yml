@@ -5,11 +5,8 @@ services:
 #    acme_basic_cms.example:
 #        class: %acme_basic_cms.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
-    acme_basiccms.basic_cms.phpcr.initializer:
-        class: Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer
-        arguments:
-            - My custom initializer
-            - ["/cms/pages", "/cms/posts", "/cms/routes"]
+    acme_basiccms.phpcr.initializer.site:
+        class: Acme\BasicCmsBundle\Initializer\SiteInitializer
         tags:
             - { name: doctrine_phpcr.initializer }
     acme.basic_cms.admin.page:
