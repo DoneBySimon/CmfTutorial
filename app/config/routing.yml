@@ -1,0 +1,4 @@
+acme_basic_cms:
+    resource: "@AcmeBasicCmsBundle/Resources/config/routing.yml"
+    prefix:   /
+
