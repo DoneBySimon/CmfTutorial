@@ -90,6 +90,7 @@ cmf_routing:
         persistence:
             phpcr:
                 route_basepath: /cms/routes
+                use_sonata_admin: false
 
 cmf_routing_auto:
     persistence:
