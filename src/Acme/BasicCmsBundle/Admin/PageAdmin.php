@@ -1,6 +1,8 @@
 <?php
 namespace Acme\BasicCmsBundle\Admin;
 
+use Knp\Menu\ItemInterface;
+use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -38,5 +40,23 @@ class PageAdmin extends Admin
     public function getExportFormats()
     {
         return array();
+    }
+
+    protected function configureSideMenu(ItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    {
+        if ('edit' !== $action) {
+            return;
+        }
+
+        $page = $this->getSubject();
+
+        $menu->addChild('make-homepage', array(
+            'label' => 'Make Homepage',
+            'attributes' => array('class' => 'btn'),
+            'route' => 'make_homepage',
+            'routeParameters' => array(
+                'id' => $page->getId(),
+            ),
+        ));
     }
 }
