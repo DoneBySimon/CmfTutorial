@@ -25,6 +25,12 @@ trait ContentTrait
      */
     protected $content;
 
+    /**
+     * @PHPCR\Referrers(
+     *     referringDocument="Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\Route",
+     *     referencedBy="content"
+     * )
+     */
     protected $routes;
 
     public function getId()
